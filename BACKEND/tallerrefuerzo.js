@@ -29,10 +29,68 @@ app.get("/api/1", async (req,res) =>{
     }
 });
 
+app.get("/api/2", async (req,res) =>{
+    try{
+        console.log(req.query);
+        const result = await db
+        .collection("movies")
+        .find(genres.drama)
+        .limit(50)
+        .toArray();
 
+        res.status(200).json({
+            ok: true,
+            data: result
+        })
+    } catch (error) {
+        res.status(400).json({
+            ok: false,
+            message: error.message
+        })
+    }
+});
 
+app.get("/api/3", async (req,res) =>{
+    try{
+        console.log(req.query);
+        const result = await db
+        .collection("movies")
+        .find(genres.action)
+        .limit(50)
+        .toArray();
 
+        res.status(200).json({
+            ok: true,
+            data: result
+        })
+    } catch (error) {
+        res.status(400).json({
+            ok: false,
+            message: error.message
+        })
+    }
+});
 
+app.get("/api/3", async (req,res) =>{
+    try{
+        console.log(req.query);
+        const result = await db
+        .collection("movies")
+        .find({country:USA})
+        .limit(50)
+        .toArray();
+
+        res.status(200).json({
+            ok: true,
+            data: result
+        })
+    } catch (error) {
+        res.status(400).json({
+            ok: false,
+            message: error.message
+        })
+    }
+});
 
 
 
